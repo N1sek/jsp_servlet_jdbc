@@ -20,8 +20,14 @@ public class BorrarSociosServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RequestDispatcher dispatcher = null;
-
         Integer codigo = null;
+
+        try {
+            codigo = Integer.parseInt(request.getParameter("codigo"));
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
         if (codigo != null){
             socioDAO.delete(codigo);
 
